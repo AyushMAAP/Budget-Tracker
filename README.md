@@ -24,5 +24,5 @@ A sleek and responsive web application that helps users track their income, expe
 
 ---
 
-## 📦 Folder Structure
+
 

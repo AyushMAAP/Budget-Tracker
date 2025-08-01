@@ -2,6 +2,11 @@
 
 A sleek and responsive web application that helps users track their income, expenses, and overall budget with a stylish glassmorphic UI and smooth light/dark mode toggle.
 
+## 🌐 Live Demo
+
+👉 [Click here to try the Budget Tracker](https://ayushmaap.github.io/Budget-Tracker/)
+
+
 ## 🚀 Features
 
 - 🎯 **Set a Total Budget**: Plan your spending by setting a budget limit.

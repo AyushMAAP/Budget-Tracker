@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Budget & Expense Tracker</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Text color for dark/light modes via CSS variable */
+    #budget-form ::placeholder {
+      color: var(--text-light);
+    }
+    #form ::placeholder{
+        color: var(--text-light);
+    }
+    
+
+    .theme-switch {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: 0.4s;
+      border-radius: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "🌙";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      color: rgb(0, 0, 0);
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: 0.4s;
+    }
+
+    input:checked + .slider {
+      background-color: #a855f7;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(26px);
+      content: "☀️";
+    }
+
+    input[type="text"],
+    input[type="number"] {
+      transition: box-shadow 0.3s, border 0.3s;
+    }
+
+    input[type="text"]:focus,
+    input[type="number"]:focus {
+      box-shadow: 0 0 12px var(--primary), 0 0 20px var(--secondary);
+      border: 1px solid var(--secondary);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="theme-switch">
+    <label class="switch">
+      <input type="checkbox" id="themeToggle">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="container">
+    <div class="tracker-card glass">
+      <h1 class="heading">💰 Budget Tracker</h1>
+
+      <form id="budget-form">
+        <h3>Set Your Total Budget</h3>
+        <input type="number"
+          id="budget-input"
+          placeholder="Enter your total budget"
+          step="0.01"
+          min="0"
+          required />
+        <button class="btn">Set Budget</button>
+      </form>
+
+      <div class="balance-section">
+        <h2>Remaining Balance</h2>
+        <p id="balance">₹0.00</p>
+      </div>
+
+      <div class="summary">
+        <div class="income">
+          <h3>Total Budget</h3>
+          <p id="income" class="money plus">₹0.00</p>
+        </div>
+        <div class="expense">
+          <h3>Spent</h3>
+          <p id="expense" class="money minus">₹0.00</p>
+        </div>
+      </div>
+
+      <h3 class="section-title">Expenses</h3>
+      <ul id="list" class="list animated-list">
+        <!-- Expenses will appear here -->
+      </ul>
+
+      <h3 class="section-title">Add New Expense</h3>
+      <form id="form">
+        <input
+          type="text"
+          id="text"
+          placeholder="Enter expense item (e.g., Food, Travel)"
+          required />
+        <input
+          type="number"
+          id="amount"
+          placeholder="Enter amount"
+          step="0.01"
+          min="0"
+          required />
+        <button class="btn">+ Add Expense</button>
+      </form>
+
+    </div>
+  </div>
+
+  <script>
+    const toggleInput = document.getElementById('themeToggle');
+    const body = document.body;
+
+    function applyStoredTheme() {
+      const mode = localStorage.getItem('themeMode');
+      if (mode === 'light') {
+        body.classList.add('light-mode');
+        toggleInput.checked = true;
+      } else {
+        body.classList.remove('light-mode');
+        toggleInput.checked = false;
+      }
+    }
+
+    function toggleTheme() {
+      const isLight = toggleInput.checked;
+      if (isLight) {
+        body.classList.add('light-mode');
+        localStorage.setItem('themeMode', 'light');
+      } else {
+        body.classList.remove('light-mode');
+        localStorage.setItem('themeMode', 'dark');
+      }
+    }
+
+    toggleInput.addEventListener('change', toggleTheme);
+    applyStoredTheme();
+  </script>
+
+  <script src="script.js"></script>
+</body>
+</html>

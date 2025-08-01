@@ -22,7 +22,4 @@ A sleek and responsive web application that helps users track their income, expe
 | JavaScript | App logic & DOM handling  |
 | LocalStorage | Persistent data storage |
 
----
-
-
 
